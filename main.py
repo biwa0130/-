@@ -168,15 +168,12 @@ def run_schedule():
         schedule.run_pending()
         time.sleep(60)
 
-# 起動時にバックグラウンドで時間を監視させる処理
-if __name__ == "__main__":
-    t = threading.Thread(target=run_schedule)
-    t.daemon = True
-    t.start()
-    
-    # Flaskサーバー起動
-import os
-
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+# 起動時にバックグラウンドで時間を監視させる処理 ＆ Flaskサーバー起動
+    if __name__ == "__main__":
+        t = threading.Thread(target=run_schedule)
+        t.daemon = True
+        t.start()
+        
+        # Flaskサーバー起動
+        port = int(os.environ.get("PORT", 5000))
+        app.run(host="0.0.0.0", port=port)
